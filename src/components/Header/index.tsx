@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { MdShoppingBasket } from "react-icons/md";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
@@ -7,7 +7,8 @@ import { Cart, Container } from "./styles";
 
 const Header = (): JSX.Element => {
   const { cart } = useCart();
-  const cartSize = 1; // TODO;
+
+  const cartSize = useMemo(() => cart.length, [cart]);
 
   return (
     <Container>
