@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useCart } from "../../hooks/useCart";
+import { api } from "../../services/api";
 import { formatPrice } from "../../util/format";
 import { ProductList } from "./styles";
 
@@ -36,10 +36,7 @@ const Home = (): JSX.Element => {
 
   useEffect(() => {
     async function loadProducts() {
-      // TODO
-      const response = await axios.get<Product[]>(
-        "http://localhost:3333/products"
-      );
+      const response = await api.get<Product[]>("products");
 
       const data = response.data.map((product) => ({
         ...product,
